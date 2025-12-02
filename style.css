@@ -12,11 +12,14 @@ html, body {
     overflow-x: hidden !important;
     font-family: Arial, sans-serif;
 }
+body {
+    font-family: "Inter", sans-serif;
+}
+
 
 /* =======================================================
    SECTION 1 — HERO OFFER (PC + MOBILE FIXED PERFECT)
 ======================================================= */
-
 .offer-section {
     position: relative;
     width: 100%;
@@ -47,18 +50,14 @@ html, body {
     align-items: center;
 }
 
-/* ============================
-       CỘT TRÁI
-============================ */
+/* CỘT TRÁI */
 .offer-left {
     flex: 1;
     display: flex;
     justify-content: center;
 }
 
-/* ============================
-       CỘT PHẢI
-============================ */
+/* CỘT PHẢI */
 .offer-right {
     flex: 1;
     color: #fff;
@@ -96,7 +95,6 @@ html, body {
     border-radius: 12px;
     margin-bottom: 15px;
     font-size: 20px;
-    width: 100%;
     max-width: 420px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
@@ -106,12 +104,7 @@ html, body {
     margin-right: 12px;
 }
 
-/* NOTE + BUTTON */
-.offer-note {
-    font-size: 15px;
-    margin: 15px 0 20px;
-}
-
+/* BUTTON */
 .offer-btn {
     background: #C02035;
     padding: 14px 34px;
@@ -128,7 +121,7 @@ html, body {
 }
 
 /* =======================================================
-   COUNTDOWN STYLE (ĐẸP + NỔI)
+   FLIP COUNTDOWN — FULL ANIMATION
 ======================================================= */
 
 .footer-countdown-box {
@@ -141,110 +134,117 @@ html, body {
     font-weight: 900;
     margin-bottom: 18px;
 }
-/* ============================
-   COUNTDOWN – MOBILE FIX
-============================ */
 
-.countdown-timer {
+/* LAYOUT */
+/* ================================
+   COUNTDOWN — FIX MOBILE & ALIGN
+================================ */
+
+.flip-countdown {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;      /* Cho xuống dòng gọn */
     gap: 12px;
-    width: 100%;
-    max-width: 360px;
-    margin: 0 auto;
+    flex-wrap: wrap;
 }
 
-.time-box {
-    flex: 1 1 calc(50% - 12px);   /* 2 cột đều nhau */
-    max-width: 150px;
+.flip-unit {
     text-align: center;
-    padding: 12px 0;
+}
+
+/* CARD STYLE */
+.flip-card {
+    width: 95px;
+    height: 110px;
+    background: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
     border-radius: 12px;
-    background: rgba(255,255,255,0.25);
-    border: 2px solid rgba(255,255,255,0.4);
-    backdrop-filter: blur(6px);
+    border: 1px solid #444;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+    position: relative;
+    overflow: hidden;
+    perspective: 500px;
 }
 
-/* Mobile nhỏ */
-@media (max-width: 430px) {
-    .time-box {
-        flex: 1 1 calc(50% - 10px); 
-        max-width: 140px;
-    }
+/* TEXT INSIDE */
+.flip-card .number,
+.flip-card .next-number {
+    position: absolute;
+    inset: 0;
+    width: 100%;              /* FULL WIDTH */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 4px;      /* GIÃN CHỮ NỔI BẬT */
+    backface-visibility: hidden;
 }
 
-@media (max-width: 360px) {
-    .time-box {
-        flex: 1 1 100%;   /* 1 cột khi màn quá nhỏ */
-        max-width: 100%;
-    }
+
+/* MIDDLE LINE LIKE REAL FLIP CLOCK */
+.flip-card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1.6px;
+    background: rgba(255,255,255,0.22);
+    transform: translateY(-50%);
 }
-.time-box label {
+
+/* FLIP ANIMATION */
+.flip-card.animate .number {
+    animation: flipTop 0.6s ease forwards;
+}
+
+.flip-card.animate .next-number {
+    animation: flipBottom 0.6s ease forwards;
+}
+
+@keyframes flipTop {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(-90deg); }
+}
+
+@keyframes flipBottom {
+    0% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0deg); }
+}
+
+/* LABEL */
+.flip-unit label {
+    margin-top: 8px;
     font-size: 13px;
     font-weight: 700;
+    color: #f3c776;
 }
 
-/* =======================================================
-   RESPONSIVE — MOBILE FIXED PERFECT
-======================================================= */
+/* ================================
+   MOBILE FIX — 4 Ô NHỎ NẰM THẲNG HÀNG
+================================ */
+@media(max-width: 480px) {
 
-@media (max-width: 992px) {
-    .offer-wrapper {
-        flex-direction: column;
-        text-align: center;
-        gap: 40px;
+    .flip-countdown {
+        gap: 8px;
     }
 
-    .offer-right,
-    .offer-left {
-        max-width: 100%;
-        justify-content: center;
+    .flip-card {
+        width: 65px;
+        height: 75px;
     }
 
-    .offer-title { font-size: 34px; }
-    .offer-highlight { font-size: 42px; }
-}
-
-@media (max-width: 600px) {
-
-    .offer-title { font-size: 26px; }
-    .offer-highlight { font-size: 34px; }
-    .offer-sub { font-size: 18px; }
-
-    .offer-option {
-        font-size: 16px;
-        padding: 12px 16px;
-        max-width: 100%;
-        justify-content: center;
+    .flip-card .number,
+    .flip-card .next-number {
+        font-size: 26px;
     }
 
-    .offer-btn {
-        font-size: 18px;
-        padding: 12px 26px;
-    }
-
-    /* COUNTDOWN chỉnh lại đẹp mobile */
-    .countdown-timer {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-    }
-
-    .time-box {
-        width: 75px;
-        padding: 10px;
-    }
-
-    .time-box span {
-        font-size: 24px;
+    .flip-unit label {
+        font-size: 11px;
     }
 }
 
-@media (max-width: 390px) {
-    .offer-title { font-size: 22px; }
-    .offer-highlight { font-size: 28px; }
-}
+
 
 
 
@@ -614,11 +614,14 @@ html, body {
     }
 }
 /* =======================
-   BACKGROUND
+   BACKGROUND 5
 ======================= */
+/* ================================
+   SECTION 5 — BENEFITS
+================================ */
 .benefit-section {
     position: relative;
-    padding: 90px 0;
+    padding: 100px 0;
     background: url("Picture/class.jpg") center/cover no-repeat;
 }
 
@@ -631,8 +634,8 @@ html, body {
 .benefit-inner {
     position: relative;
     z-index: 2;
-    width: 90%;
     max-width: 1100px;
+    width: 90%;
     margin: auto;
     text-align: center;
 }
@@ -645,57 +648,83 @@ html, body {
     margin-bottom: 60px;
 }
 
-/* =======================
-   CARD LAYOUT
-======================= */
-.benefit-row {
-    display: flex;
-    justify-content: center;
+/* GRID */
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 35px;
-    margin-bottom: 40px;
 }
 
-/* CARD BOX */
+/* CARD */
 .benefit-card {
     background: #fff;
-    width: 300px;
-    padding: 35px 22px;
-    border-radius: 14px;
+    padding: 40px 28px;
+    border-radius: 18px;
     position: relative;
+    min-height: 180px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
     text-align: left;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
 }
 
 /* NUMBER BADGE */
-.benefit-card .num {
+.badge-num {
     position: absolute;
-    top: -20px;
-    left: 18px;
-    padding: 10px 20px;
-    font-size: 22px;
-    font-weight: 900;
-    border-radius: 8px;
-}
-
-/* COLORS */
-.red .num {
+    top: -18px;
+    left: -18px;
     background: #7A1A1A;
     color: #fff;
+    padding: 14px 24px;
+    font-size: 22px;
+    font-weight: 900;
+    border-radius: 15px 0 15px 0;
 }
 
-.yellow .num {
+.yellow .badge-num {
     background: #F6C56B;
     color: #7A1A1A;
 }
 
-/* TEXT */
+/* ICON BADGE */
+.badge-icon {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    background: #fff;
+    padding: 14px;
+    border-radius: 0 15px 0 15px;
+    color: #7A1A1A;
+    font-size: 22px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.yellow .badge-icon {
+    color: #7A1A1A;
+}
+
+/* CARD TEXT */
 .benefit-card p {
+    margin-top: 25px;
     font-size: 17px;
     font-weight: 700;
+    line-height: 1.45;
     color: #7A1A1A;
-    margin-top: 20px;
-    line-height: 1.4;
 }
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    .benefit-title {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .benefit-title {
+        font-size: 26px;
+    }
+}
+
 
 /* =======================
    RESPONSIVE
@@ -1107,92 +1136,133 @@ html, body {
    COUNTDOWN — BẢN SIÊU ĐẬM + NỔI MAX
 ================================== */
 
+/* ======================
+   COUNTDOWN FLIP
+====================== */
+
 .footer-countdown-box {
-    position: relative;
-    z-index: 5 !important;
     text-align: center;
-    margin-right: 150px;
     margin-bottom: 25px;
-    color: #f7eaea;
-   
 }
 
-
-/* TIÊU ĐỀ */
+/* tiêu đề */
 .countdown-title {
     font-size: 24px;
     font-weight: 900;
-    letter-spacing: 1px;
-    text-shadow: 0 0 12px rgba(0,0,0,0.8);
     margin-bottom: 15px;
+    color: #fff;
 }
 
-/* Layout */
-.countdown-timer {
+/* Container */
+.flip-countdown {
     display: flex;
     justify-content: center;
-    gap: 22px;
+    gap: 18px;
 }
 
-/* HỘP GIỜ */
-.time-box {
-    background: rgba(255,255,255,0.28);  /* sáng hơn nên rõ hơn */
-    padding: 18px 22px;
+/* Unit */
+.flip-unit {
+    text-align: center;
+}
+
+/* BOX */
+.flip-card {
     width: 90px;
+    height: 110px;
+    background: linear-gradient(#2f2f2f, #1b1b1b);
     border-radius: 14px;
-
-    border: 2px solid rgba(255,255,255,0.85); /* viền sáng mạnh */
-    box-shadow:
-        0 8px 22px rgba(0,0,0,0.35),      /* bóng shadow mạnh */
-        0 0 14px rgba(255,255,255,0.38); /* glow trắng nhẹ */
-
-    backdrop-filter: blur(7px); /* hiệu ứng kính mờ sang */
+    border: 2px solid #444;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.45);
+    position: relative;
+    overflow: hidden;
+    perspective: 400px;
 }
 
-/* SỐ LỚN */
-.time-box span {
-    font-size: 34px;
-    font-weight: 900;
-    display: block;
-    color: #ffffff;
-    text-shadow: 0 0 8px rgba(0,0,0,0.6);
-    letter-spacing: 1px;
+.flip-card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.12);
+    z-index: 3;
 }
 
-/* CHỮ NHỎ */
-.time-box label {
-    font-size: 14px;
-    font-weight: 800;
-    margin-top: 6px;
-    opacity: 1;
+/* Numbers */
+.flip-card .number,
+.flip-card .next-number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: 300;
     color: #fff;
-    text-shadow: 0 0 6px rgba(0,0,0,0.55);
+    backface-visibility: hidden;
 }
 
-/* ===============================
-   RESPONSIVE MOBILE
-================================ */
-@media(max-width: 480px){
-    .countdown-timer {
+/* Animation */
+.flip-card.animate .number {
+    animation: flipTop 0.6s forwards;
+}
+
+.flip-card.animate .next-number {
+    animation: flipBottom 0.6s forwards;
+}
+
+@keyframes flipTop {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(-90deg); }
+}
+
+@keyframes flipBottom {
+    0% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0deg); }
+}
+
+/* LABEL */
+.flip-unit label {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #f6c66c;
+}
+
+/* ======================
+   MOBILE FIX — đặt ngang đẹp 
+====================== */
+
+@media (max-width: 600px) {
+
+    .offer-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-countdown-box {
+        order: -1;            /* đưa countdown lên đầu */
+        margin-bottom: 25px;
+        width: 100%;
+    }
+
+    .flip-countdown {
         gap: 12px;
     }
 
-    .time-box {
-        padding: 12px 14px;
+    .flip-card {
         width: 70px;
-        border-width: 1.5px;
+        height: 85px;
     }
 
-    .time-box span {
-        font-size: 26px;
+    .flip-card .number,
+    .flip-card .next-number {
+        font-size: 32x;
+        letter-spacing: 3px
     }
 
-    .countdown-title {
-        font-size: 20px;
+    .flip-unit label {
+        font-size: 12px;
     }
 }
-
-/* ===============================
-   KẾT THÚC COUNTDOWN
-================================ */
-

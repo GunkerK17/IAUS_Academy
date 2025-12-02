@@ -1,33 +1,56 @@
-function startCountdown() {
-    // 🎯 Đặt deadline: 23:59:59 ngày 06/12 năm nay
-    let currentYear = new Date().getFullYear();
-    let deadline = new Date(`${currentYear}-12-06T23:59:59`);
+const endDate = new Date("2025-12-06T23:59:59").getTime();
 
-    function updateTimer() {
-        let now = new Date().getTime();
-        let distance = deadline - now;
+function updateUnit(type, value) {
+    const unit = document.querySelector(`.flip-unit[data-type="${type}"]`);
+    const card = unit.querySelector(".flip-card");
+    const current = card.querySelector(".number");
+    const next = card.querySelector(".next-number");
 
-        if (distance <= 0) {
-            document.getElementById("cd-days").innerText = "00";
-            document.getElementById("cd-hours").innerText = "00";
-            document.getElementById("cd-mins").innerText = "00";
-            document.getElementById("cd-secs").innerText = "00";
-            return;
-        }
+    if (current.innerHTML === value) return;
 
-        let days  = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let mins  = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let secs  = Math.floor((distance % (1000 * 60)) / 1000);
+    next.innerHTML = value;
+    card.classList.add("animate");
 
-        document.getElementById("cd-days").innerText  = days.toString().padStart(2, '0');
-        document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
-        document.getElementById("cd-mins").innerText  = mins.toString().padStart(2, '0');
-        document.getElementById("cd-secs").innerText  = secs.toString().padStart(2, '0');
-    }
-
-    updateTimer();
-    setInterval(updateTimer, 1000);
+    setTimeout(() => {
+        current.innerHTML = value;
+        card.classList.remove("animate");
+    }, 600);
 }
 
-startCountdown();
+function runCountdown() {
+    const now = Date.now();
+    let diff = endDate - now;
+
+    if (diff < 0) diff = 0;
+
+    const d = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, "0");
+    const h = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, "0");
+    const m = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, "0");
+    const s = String(Math.floor((diff / 1000) % 60)).padStart(2, "0");
+
+    updateUnit("days", d);
+    updateUnit("hours", h);
+    updateUnit("mins", m);
+    updateUnit("secs", s);
+}
+
+runCountdown();
+setInterval(runCountdown, 1000);
+
+function updateUnit(type, value) {
+    const unit = document.querySelector(`.flip-unit[data-type="${type}"]`);
+    const card = unit.querySelector(".flip-card");
+    const current = card.querySelector(".number");
+    const next = card.querySelector(".next-number");
+
+    if (current.innerHTML === value) return;
+
+    next.innerHTML = value;
+
+    card.classList.add("animate");
+
+    setTimeout(() => {
+        current.innerHTML = value;
+        card.classList.remove("animate");
+    }, 600);
+}

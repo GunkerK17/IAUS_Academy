@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vn">
 
 <head>
     <meta charset="UTF-8" />
@@ -9,12 +9,18 @@
     <!-- Link CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/png" href="Picture/logo IAUS.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 
  <!-- ============================
+      SECTION 1 — HERO OFFER
+=============================== -->
+
+<!-- ============================
       SECTION 1 — HERO OFFER
 =============================== -->
 
@@ -27,38 +33,56 @@
         <!-- =======================
               CỘT TRÁI — COUNTDOWN
         ======================== -->
-        <div class="offer-left">
+<div class="offer-left">
+  <div class="footer-countdown-box">
+    <h3 class="countdown-title">ƯU ĐÃI KẾT THÚC SAU</h3>
 
-            <div class="footer-countdown-box">
-                <h3 class="countdown-title">ƯU ĐÃI KẾT THÚC SAU</h3>
+    <div class="flip-countdown">
 
-                <div class="countdown-timer">
-                    <div class="time-box">
-                        <span id="cd-days">00</span>
-                        <label>NGÀY</label>
-                    </div>
-
-                    <div class="time-box">
-                        <span id="cd-hours">00</span>
-                        <label>GIỜ</label>
-                    </div>
-
-                    <div class="time-box">
-                        <span id="cd-mins">00</span>
-                        <label>PHÚT</label>
-                    </div>
-
-                    <div class="time-box">
-                        <span id="cd-secs">00</span>
-                        <label>GIÂY</label>
-                    </div>
-                </div>
-            </div>
-
+      <div class="flip-unit" data-type="days">
+        <div class="flip-card">
+          <div class="number">00</div>
+          <div class="next-number">00</div>
+          <div class="split-line"></div>
         </div>
+        <label>NGÀY</label>
+      </div>
+
+      <div class="flip-unit" data-type="hours">
+        <div class="flip-card">
+          <div class="number">00</div>
+          <div class="next-number">00</div>
+          <div class="split-line"></div>
+        </div>
+        <label>GIỜ</label>
+      </div>
+
+      <div class="flip-unit" data-type="mins">
+        <div class="flip-card">
+          <div class="number">00</div>
+          <div class="next-number">00</div>
+          <div class="split-line"></div>
+        </div>
+        <label>PHÚT</label>
+      </div>
+
+      <div class="flip-unit" data-type="secs">
+        <div class="flip-card">
+          <div class="number">00</div>
+          <div class="next-number">00</div>
+          <div class="split-line"></div>
+        </div>
+        <label>GIÂY</label>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
         <!-- =======================
-              CỘT PHẢI — NỘI DUNG OFFER
+              CỘT PHẢI — OFFER
         ======================== -->
         <div class="offer-right">
 
@@ -78,19 +102,17 @@
             </div>
 
             <p class="offer-note">
-                Dành cho học viên đăng ký trước ngày 6/12 – chỉ có 20 suất.  
+                Dành cho học viên đăng ký trước ngày 6/12 – chỉ có 20 suất.
                 Tham gia ngay để có thêm nhiều ưu đãi!
             </p>
 
-            <a href="https://forms.gle/fK6hSE4PdCKRYNCm6" class="offer-btn">ĐĂNG KÍ NGAY!</a>
+            <a href="https://forms.gle/fK6hSE4PdCKRYNCm6" class="offer-btn" target="_blank">ĐĂNG KÝ NGAY</a>
 
         </div>
 
-    </div> <!-- END WRAPPER -->
+    </div>
 
 </section>
-
-
 
     <!-- END HERO SECTION -->
 <!-- ============================
@@ -202,8 +224,9 @@
 
 
 <!-- ============================
-     SECTION 5 — PROGRAM LIST 
+     SECTION 5 — BENEFITS NEW
 ============================= -->
+
 <section class="benefit-section">
     <div class="benefit-overlay"></div>
 
@@ -213,37 +236,47 @@
             LỢI ÍCH KHI <br> ĐĂNG KÍ THAM GIA KHÓA HỌC
         </h2>
 
-        <div class="benefit-row top-row">
+        <div class="benefit-grid">
+
+            <!-- CARD 1 -->
             <div class="benefit-card red">
-                <div class="num">01</div>
+                <div class="badge-num">01</div>
+                <div class="badge-icon"><i class="fa-solid fa-check"></i></div>
                 <p>GIAO TIẾP TỰ TIN TRONG MÔI TRƯỜNG LÀM VIỆC QUỐC TẾ</p>
             </div>
 
+            <!-- CARD 2 -->
             <div class="benefit-card red">
-                <div class="num">02</div>
+                <div class="badge-num">02</div>
+                <div class="badge-icon"><i class="fa-solid fa-heart"></i></div>
                 <p>NÂNG CAO HÌNH ẢNH CÁ NHÂN & NĂNG LỰC CẠNH TRANH NGHỀ NGHIỆP</p>
             </div>
 
+            <!-- CARD 3 -->
             <div class="benefit-card red">
-                <div class="num">03</div>
-                <p>THUYẾT TRÌNH VÀ ĐÀM PHÁN HIỆU QUẢ, GÂY ẤN TƯỢNG VỚI ĐỐI TÁC</p>
+                <div class="badge-num">03</div>
+                <div class="badge-icon"><i class="fa-solid fa-comment"></i></div>
+                <p>THUYẾT TRÌNH & ĐÀM PHÁN HIỆU QUẢ, GÂY ẤN TƯỢNG VỚI ĐỐI TÁC</p>
             </div>
-        </div>
 
-        <div class="benefit-row bottom-row">
+            <!-- CARD 4 -->
             <div class="benefit-card yellow">
-                <div class="num">04</div>
+                <div class="badge-num">04</div>
+                <div class="badge-icon"><i class="fa-solid fa-envelope"></i></div>
                 <p>VIẾT MAIL, HỢP ĐỒNG & BÁO CÁO CHUYÊN NGHIỆP, ĐÚNG CHUẨN</p>
             </div>
 
+            <!-- CARD 5 -->
             <div class="benefit-card yellow">
-                <div class="num">05</div>
+                <div class="badge-num">05</div>
+                <div class="badge-icon"><i class="fa-solid fa-paper-plane"></i></div>
                 <p>TĂNG CƠ HỘI THĂNG TIẾN & LÀM VIỆC TẠI CÁC TẬP ĐOÀN ĐA QUỐC GIA</p>
             </div>
-        </div>
 
+        </div>
     </div>
 </section>
+
 
 
 <!-- END PROGRAM LIST SECTION -->
